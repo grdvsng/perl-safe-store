@@ -1,4 +1,4 @@
-# SaveStore
+# SafeStore
 #### Description
 Simple memory safe store for Perl
 
