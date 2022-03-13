@@ -2,7 +2,7 @@
 #### Description
 Simple memory safe store for Perl
 
-#### Samury
+#### Summary
 ``` perl
 use strict;
 use warnings;
