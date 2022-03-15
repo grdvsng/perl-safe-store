@@ -9,15 +9,15 @@ package SafeStore::Transaction;
     #~ ---------------- ~#
     extends 'SafeStore::Class';
     #~ ---------------- ~#
-    has 'id'           => ( is=>'ro', isa=>'Str'                  , default=>sub{ Data::GUID->new->as_string } );
-    has 'commit_ts'    => ( is=>'rw', isa=>'Int'                                                               );
-    has 'created_time' => ( is=>'ro', isa=>'Str'                  , default=>sub{ DateTime->now.'' }           );
-    has 'process'      => ( is=>'ro', isa=>'Str'                  , default=>sub{ "$$" }                       );
-    has 'data'         => ( is=>'rw', isa=>'HashRef[Str|Int]'     , default=>sub { return { } }                );
-    has 'edit_time'    => ( is=>'rw', isa=>'Str'                                                               );
-    has 'master'       => ( is=>'ro', isa=>'SafeStore'            , required=>1                                );
-    has 'commited'     => ( is=>'rw', isa=>'Bool'                 , default=>0                                 );
-    has 'remove_data'  => ( is=>'rw', isa=>'ArrayRef[Str]'        , default=>sub { return [ ] }                );
+    has 'id'              => ( is=>'ro', isa=>'Str'                  , default=>sub{ Data::GUID->new->as_string } );
+    has 'commit_position' => ( is=>'rw', isa=>'Int'                                                               );
+    has 'created_time'    => ( is=>'ro', isa=>'Str'                  , default=>sub{ DateTime->now.'' }           );
+    has 'process'         => ( is=>'ro', isa=>'Str'                  , default=>sub{ "$$" }                       );
+    has 'data'            => ( is=>'rw', isa=>'HashRef[Str|Int]'     , default=>sub { return { } }                );
+    has 'edit_time'       => ( is=>'rw', isa=>'Str'                                                               );
+    has 'master'          => ( is=>'ro', isa=>'SafeStore'            , required=>1                                );
+    has 'commited'        => ( is=>'rw', isa=>'Bool'                 , default=>0                                 );
+    has 'remove_data'     => ( is=>'rw', isa=>'ArrayRef[Str]'        , default=>sub { return [ ] }                );
     #~ ---------------- ~#
     sub set( $self, $key, $value )
     {

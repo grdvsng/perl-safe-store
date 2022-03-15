@@ -81,11 +81,15 @@ for my $i ( 0..$#keys )
     my $pid = $pm->start and next FORK_REMOVE_TRNS_LOOP;
     my $key = $keys[ $i ];
     
-    ok( my $trn = $store->edit, 'Create '.( $i + 1 ).' transaction' );
+    if ( $key eq 'hello' )
+    {
+        ok( my $trn = $store->edit, 'Create '.( $i + 1 ).' transaction' );
 
-    lives_ok( sub { $trn->remove( $key ) }, "Remove key $key" ) if $key eq 'hello';
+        lives_ok( sub { $trn->remove( $key ) }, "Remove key $key" ) ;
+        
+        $trn->commit;
+    }
 
-    $trn->commit;
     $pm->finish;
 }
 

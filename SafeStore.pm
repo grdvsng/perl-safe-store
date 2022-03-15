@@ -82,8 +82,9 @@ package SafeStore;
  
             $self->store( $data );
          
-            $store->commited( 1 );
-            
+            $store->commited       ( 1                             );
+            $store->commit_position( scalar( @{ $self->history } ) );
+
             $file->write( encode_json( $self->pack ), '>' );
         } ); 
     }
@@ -210,7 +211,7 @@ package SafeStore;
         }
 
         $self->history( \@history );
-        $self->changes( \@changes );
+        $self->changes( [ sort( { $a->commit_position ge $b->commit_position } @changes ) ] );
 
         delete $store->{__id__};
 
